@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Example Client",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/example_client.go",
+      "env": {},
+      "args": []
+    },
+    {
+      "name": "Build Plugin",
+      "type": "go",
+      "request": "launch",
+      "mode": "exec",
+      "program": "go",
+      "args": [
+        "build",
+        "-buildmode=plugin",
+        "-trimpath",
+        "-o",
+        "/tmp/main.so",
+        "${workspaceFolder}/main.go"
+      ]
+    },
+    {
+      "name": "Run Tests",
+      "type": "go",
+      "request": "launch",
+      "mode": "test",
+      "program": "${workspaceFolder}",
+      "env": {},
+      "args": ["-v"]
+    },
+    {
+      "name": "Debug Test (Current File)",
+      "type": "go",
+      "request": "launch",
+      "mode": "test",
+      "program": "${file}",
+      "env": {},
+      "args": ["-v", "-run", "^${selectedText}$"]
+    }
+  ]
+}

@@ -20,8 +20,7 @@ vendor/
 # Docker volumes
 data/
 
-# IDE files
-.vscode/
+# IDE files (but keep .vscode for team settings)
 .idea/
 *.swp
 *.swo

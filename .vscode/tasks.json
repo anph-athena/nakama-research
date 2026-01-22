@@ -1,0 +1,82 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Go: Format",
+      "type": "shell",
+      "command": "go fmt ./...",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Go: Vet",
+      "type": "shell",
+      "command": "go vet ./...",
+      "problemMatcher": ["$go"],
+      "group": "build"
+    },
+    {
+      "label": "Go: Test",
+      "type": "shell",
+      "command": "go test -v ./...",
+      "problemMatcher": ["$go"],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Go: Build Plugin",
+      "type": "shell",
+      "command": "go build -buildmode=plugin -trimpath -o /tmp/main.so main.go",
+      "problemMatcher": ["$go"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Go: Tidy Modules",
+      "type": "shell",
+      "command": "go mod tidy",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Docker: Start Services",
+      "type": "shell",
+      "command": "docker-compose up -d",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Docker: Stop Services",
+      "type": "shell",
+      "command": "docker-compose down",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Docker: View Logs",
+      "type": "shell",
+      "command": "docker-compose logs -f nakama",
+      "problemMatcher": [],
+      "isBackground": true,
+      "group": "build"
+    },
+    {
+      "label": "Docker: Restart Nakama",
+      "type": "shell",
+      "command": "docker-compose restart nakama",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Setup: Run Setup Script",
+      "type": "shell",
+      "command": "./setup.sh",
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ]
+}
