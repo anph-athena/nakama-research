@@ -1,0 +1,28 @@
+# This file defines code ownership for the nakama-research repository
+# Each line is a file pattern followed by one or more owners
+
+# Default owners for everything in the repo
+* @anph-athena
+
+# Go code - requires review from Go experts
+*.go @anph-athena
+go.mod @anph-athena
+go.sum @anph-athena
+
+# Docker and infrastructure
+docker-compose.yml @anph-athena
+Dockerfile* @anph-athena
+
+# Nakama configuration
+local.yml @anph-athena
+*.yml @anph-athena
+
+# Documentation
+*.md @anph-athena
+docs/ @anph-athena
+
+# GitHub configuration
+.github/ @anph-athena
+
+# Scripts
+*.sh @anph-athena
