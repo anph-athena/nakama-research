@@ -1,21 +1,11 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"log"
-	"time"
-
-	"github.com/heroiclabs/nakama-common/api"
-	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is an example client that demonstrates how to use the level-based matchmaking
 // In a real scenario, this would be a separate client application
-
-type MatchmakerClient struct {
-	client *api.ApiClient
-}
 
 func main() {
 	fmt.Println("Example matchmaking client")
@@ -41,32 +31,29 @@ func main() {
 func ExampleMatchmaking() {
 	// This is pseudocode to show the concept
 	// In a real implementation, you would use the official Nakama Go client SDK
-	
-	ctx := context.Background()
-	
+
 	// Create a matchmaking ticket with the player's level
 	playerLevel := 10.0
-	
+
 	// The matchmaker will use the "level" property to match players
 	// Players with similar levels will be matched together
 	stringProps := map[string]string{
 		"region": "us-east",
 	}
-	
+
 	numericProps := map[string]float64{
 		"level": playerLevel, // This is the key property for matchmaking
 	}
-	
+
 	fmt.Printf("Adding matchmaker ticket for player with level %.0f\n", playerLevel)
 	fmt.Println("String properties:", stringProps)
 	fmt.Println("Numeric properties:", numericProps)
-	
+
 	// In a real client, you would call something like:
 	// ticket, err := client.AddMatchmaker(ctx, 2, 8, "*", stringProps, numericProps)
-	
-	time.Sleep(1 * time.Second)
-	log.Println("Matchmaking ticket added (example)")
-	
+
+	fmt.Println("Matchmaking ticket added (example)")
+
 	// The server's matchmakerMatched function will be called when players are matched
 }
 

@@ -23,16 +23,16 @@ func InitModule(ctx context.Context, logger runtime.Logger, db *sql.DB, nk runti
 // This function uses player_profile.level as the matchmaking rule
 func matchmakerMatched(ctx context.Context, logger runtime.Logger, db *sql.DB, nk runtime.NakamaModule, entries []runtime.MatchmakerEntry) (string, error) {
 	logger.Info("Matchmaker matched called with %d entries", len(entries))
-	
+
 	// Validate that all players are within the level range
 	var minLevel, maxLevel float64
 	firstEntry := true
-	
+
 	// Log the matched players and their levels
 	for i, entry := range entries {
 		userID := entry.GetPresence().GetUserId()
 		logger.Info("Player %d matched: %s", i+1, userID)
-		
+
 		// Get the level from properties
 		if props := entry.GetProperties(); props != nil {
 			if levelValue, ok := props["level"]; ok {
@@ -48,9 +48,9 @@ func matchmakerMatched(ctx context.Context, logger runtime.Logger, db *sql.DB, n
 					logger.Warn("Unknown level type for player %s: %T", userID, levelValue)
 					continue
 				}
-				
+
 				logger.Info("Player %s level: %.0f", userID, level)
-				
+
 				if firstEntry {
 					minLevel = level
 					maxLevel = level
@@ -68,10 +68,10 @@ func matchmakerMatched(ctx context.Context, logger runtime.Logger, db *sql.DB, n
 			}
 		}
 	}
-	
+
 	levelRange := maxLevel - minLevel
 	logger.Info("Match created with level range: %.0f (min: %.0f, max: %.0f)", levelRange, minLevel, maxLevel)
-	
+
 	// Return empty string to use default match handler
 	// You can return a custom match ID here if you want to use a custom match handler
 	return "", nil
