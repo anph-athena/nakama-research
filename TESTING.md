@@ -71,11 +71,11 @@ client.ssl = false;
 async function testMatchmaking() {
   // Authenticate
   const session = await client.authenticateDevice("device-id-1", true);
-  
+
   // Add matchmaker ticket with level
   const socket = client.createSocket();
   await socket.connect(session);
-  
+
   const ticket = await socket.addMatchmaker({
     minCount: 2,
     maxCount: 8,
@@ -85,9 +85,9 @@ async function testMatchmaking() {
       level: 10  // Player level
     }
   });
-  
+
   console.log("Matchmaker ticket:", ticket);
-  
+
   // Listen for match found
   socket.onmatchmakermatched = (matched) => {
     console.log("Match found:", matched);
@@ -239,6 +239,6 @@ Update `main.go` to use these properties in matchmaking logic.
 
 ## Resources
 
-- [Nakama Matchmaker Docs](https://heroiclabs.com/docs/nakama/concepts/matchmaker/)
+- [Nakama Matchmaker Docs](https://heroiclabs.com/docs/nakama/tutorials/unity/pirate-panic/matchmaking/#requesting-a-match)
 - [Client SDK Reference](https://heroiclabs.com/docs/nakama/client-libraries/)
 - [Server Runtime Docs](https://heroiclabs.com/docs/nakama/server-framework/go-runtime/)
