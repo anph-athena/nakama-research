@@ -101,7 +101,7 @@ session, err := client.AuthenticateDevice(ctx, deviceID, true, "PlayerName")
 ticket, err := client.AddMatchmaker(
     ctx,
     2,                      // min players
-    8,                      // max players  
+    8,                      // max players
     "*",                    // query (matches all)
     map[string]string{      // string properties
         "region": "us-east",
@@ -226,7 +226,7 @@ docker-compose ps
 
 - [Nakama Documentation](https://heroiclabs.com/docs/)
 - [Nakama Server Setup](https://heroiclabs.com/docs/nakama/getting-started/install/macos/)
-- [Matchmaker Documentation](https://heroiclabs.com/docs/nakama/concepts/matchmaker/)
+- [Matchmaker Documentation](https://heroiclabs.com/docs/nakama/tutorials/unity/pirate-panic/matchmaking/#requesting-a-match)
 - [Go Runtime Documentation](https://heroiclabs.com/docs/nakama/server-framework/go-runtime/)
 
 ## License
