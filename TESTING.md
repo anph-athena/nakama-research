@@ -239,6 +239,6 @@ Update `main.go` to use these properties in matchmaking logic.
 
 ## Resources
 
-- [Nakama Matchmaker Docs](https://heroiclabs.com/docs/nakama/tutorials/unity/pirate-panic/matchmaking/#requesting-a-match)
+- [Nakama Matchmaker Docs](https://heroiclabs.com/docs/nakama/concepts/matchmaker/)
 - [Client SDK Reference](https://heroiclabs.com/docs/nakama/client-libraries/)
-- [Server Runtime Docs](https://heroiclabs.com/docs/nakama/server-framework/go-runtime/)
+- [Server Runtime Docs](https://heroiclabs.com/docs/nakama/server-framework/basics/)

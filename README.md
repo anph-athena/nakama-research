@@ -224,10 +224,10 @@ docker-compose ps
 
 ## References
 
-- [Nakama Documentation](https://heroiclabs.com/docs/)
-- [Nakama Server Setup](https://heroiclabs.com/docs/nakama/getting-started/install/macos/)
-- [Matchmaker Documentation](https://heroiclabs.com/docs/nakama/tutorials/unity/pirate-panic/matchmaking/#requesting-a-match)
-- [Go Runtime Documentation](https://heroiclabs.com/docs/nakama/server-framework/go-runtime/)
+- [Nakama Documentation](https://heroiclabs.com/docs/nakama/)
+- [Nakama Server Setup](https://heroiclabs.com/docs/nakama/getting-started/docker-quickstart/)
+- [Matchmaker Documentation](https://heroiclabs.com/docs/nakama/concepts/matchmaker/)
+- [Go Runtime Documentation](https://heroiclabs.com/docs/nakama/server-framework/basics/)
 
 ## License
 

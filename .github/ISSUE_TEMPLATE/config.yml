@@ -7,5 +7,5 @@ contact_links:
     url: https://github.com/anph-athena/nakama-research/blob/main/TESTING.md
     about: Learn how to test the matchmaking system
   - name: Nakama Documentation
-    url: https://heroiclabs.com/docs/
+    url: https://heroiclabs.com/docs/nakama/
     about: Official Nakama documentation

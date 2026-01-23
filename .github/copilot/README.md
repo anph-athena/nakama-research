@@ -254,7 +254,7 @@ Copilot configuration works alongside `.github/agents/`:
 
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
 - [Copilot Best Practices](https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot)
-- [Agent Configuration Guide](../.github/agents/README.md)
+- [Agent Configuration Guide](../agents/README.md)
 
 ## Feedback
 
