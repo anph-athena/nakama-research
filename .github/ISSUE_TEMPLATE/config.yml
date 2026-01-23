@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/anph-athena/nakama-research/blob/main/README.md
+    about: Check the project documentation
+  - name: Testing Guide
+    url: https://github.com/anph-athena/nakama-research/blob/main/TESTING.md
+    about: Learn how to test the matchmaking system
+  - name: Nakama Documentation
+    url: https://heroiclabs.com/docs/nakama/
+    about: Official Nakama documentation

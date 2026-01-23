@@ -1,0 +1,135 @@
+name: Code Quality Checks
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  go-quality:
+    name: Go Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+          cache: true
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Run go fmt
+        run: |
+          if [ -n "$(gofmt -l .)" ]; then
+            echo "Go code is not formatted:"
+            gofmt -d .
+            exit 1
+          fi
+
+      - name: Run go vet
+        run: go vet ./...
+
+      - name: Run go mod tidy check
+        run: |
+          go mod tidy
+          if [ -n "$(git status --porcelain go.mod go.sum)" ]; then
+            echo "go.mod or go.sum needs to be updated"
+            git diff go.mod go.sum
+            exit 1
+          fi
+
+      - name: Build plugin
+        run: |
+          go build -buildmode=plugin -trimpath -o /tmp/main.so main.go
+
+  docker-validation:
+    name: Docker Configuration Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.27.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose version
+
+      - name: Validate docker-compose.yml
+        run: |
+          docker-compose config
+
+      - name: Check for security issues
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          scan-ref: 'docker-compose.yml'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+  documentation-check:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for broken links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          config-file: '.github/markdown-link-check-config.json'
+
+      - name: Verify README exists
+        run: |
+          if [ ! -f README.md ]; then
+            echo "README.md is missing"
+            exit 1
+          fi
+
+      - name: Check for TESTING.md
+        run: |
+          if [ ! -f TESTING.md ]; then
+            echo "Warning: TESTING.md is missing"
+          fi
+
+  integration-test:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.27.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose version
+
+      - name: Start services
+        run: |
+          docker-compose up -d
+          
+      - name: Wait for services to be healthy
+        run: |
+          timeout 120 bash -c 'until docker-compose ps | grep -q healthy; do sleep 5; done'
+
+      - name: Check Nakama health
+        run: |
+          sleep 10
+          curl -f http://localhost:7351/health || exit 1
+
+      - name: View logs on failure
+        if: failure()
+        run: |
+          docker-compose logs
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker-compose down -v
