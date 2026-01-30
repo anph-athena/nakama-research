@@ -4,17 +4,19 @@
   "go.lintTool": "golangci-lint",
   "go.lintOnSave": "package",
   "go.formatTool": "gofmt",
-  "go.testFlags": ["-v"],
+  "go.testFlags": [
+    "-v"
+  ],
   "go.coverOnSave": false,
   "go.coverOnSingleTest": true,
-  
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
-  "editor.rulers": [100],
+  "editor.rulers": [
+    100
+  ],
   "editor.tabSize": 2,
-  
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -24,39 +26,31 @@
     "**/node_modules": true,
     "**/vendor": true
   },
-  
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml",
     "https://json.schemastore.org/docker-compose.json": "docker-compose.yml"
   },
-  
   "yaml.format.enable": true,
   "yaml.validate": true,
-  
   "markdown.extension.toc.levels": "2..6",
   "markdown.extension.toc.updateOnSave": false,
-  
   "[go]": {
     "editor.defaultFormatter": "golang.go",
     "editor.formatOnSave": true
   },
-  
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml",
     "editor.formatOnSave": true
   },
-  
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.formatOnSave": true
   },
-  
   "github.copilot.enable": {
     "*": true,
     "yaml": true,
     "markdown": true,
     "go": true
   },
-  
   "github.copilot.editor.enableAutoCompletions": true
 }

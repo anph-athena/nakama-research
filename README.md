@@ -115,6 +115,25 @@ ticket, err := client.AddMatchmaker(
 // The matchmakerMatched function will be called on the server
 ```
 
+## Hello World RPC
+
+The server exposes a simple `hello_world` RPC for quick checks and examples.
+
+### Example (cURL)
+
+```bash
+curl -X POST 'http://localhost:7349/v2/rpc/hello_world' \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer YOUR_SESSION_TOKEN' \
+    -d '{"name": "Nakama"}'
+```
+
+### Response
+
+```json
+{"message": "Hello, Nakama!"}
+```
+
 ### Testing Matchmaking
 
 You can test the matchmaking using the Nakama Console or client SDKs:
